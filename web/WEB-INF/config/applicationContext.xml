@@ -12,12 +12,9 @@
 
     <context:annotation-config />
 
-    <context:component-scan base-package="org.nc.edu.internet_store.mvc.dao" />
-    <context:component-scan base-package="org.nc.edu.internet_store.mvc.service" />
+    <import resource="data.xml" />
+    <import resource="security.xml" />
 
-    <import resource="WEB-INF/spring/data.xml" />
-    <import resource="WEB-INF/spring/security.xml" />
-    <import resource="WEB-INF/spring/controllers.xml" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <!-- themes can be put in different folder such as

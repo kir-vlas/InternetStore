@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CategoryDAOimpl implements CategoryDAO{
+public class CategoryDAOImpl implements CategoryDAO{
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -20,8 +20,8 @@ public class CategoryDAOimpl implements CategoryDAO{
 
     @SuppressWarnings("unchecked")
     public List<Category> listCategory() {
-        String query = "";
-        return sessionFactory.getCurrentSession().createQuery("select cat from Category cat").list();
+        String query = "select category from Category ";
+        return sessionFactory.getCurrentSession().createQuery(query).list();
     }
 
     public void removeCategory(Integer id) {

@@ -11,13 +11,13 @@ import org.nc.edu.internet_store.mvc.domain.Category;
 
 
 @Service
-public class CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     private CategoryDAO categoryDAO;
 
     @Transactional
-    public void AddCategory(Category category){
+    public void addCategory(Category category){
         categoryDAO.addCategory(category);
     }
 

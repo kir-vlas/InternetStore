@@ -21,13 +21,13 @@ public class Category {
 
 
     @Column(name = "CATEGORY")
-    private String cat;
+    private String category;
 
     public String getCategory(){
-        return cat;
+        return category;
     }
 
     public void setCategory(String name){
-        cat = name;
+        category = name;
     }
 }
