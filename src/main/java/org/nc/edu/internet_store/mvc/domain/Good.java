@@ -45,12 +45,12 @@ public class Good {
 
 
     @Column(name = "CATEGORY")
-    private Category category;
-    public Category getCategory(){
+    private int category;
+    public int getCategory(){
         return category;
     }
 
-    public void setCategory(Category category){
+    public void setCategory(int category){
         this.category = category;
     }
 

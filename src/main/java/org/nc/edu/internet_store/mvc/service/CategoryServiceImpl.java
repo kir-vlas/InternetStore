@@ -11,6 +11,7 @@ import org.nc.edu.internet_store.mvc.domain.Category;
 
 
 @Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService{
 
     @Autowired

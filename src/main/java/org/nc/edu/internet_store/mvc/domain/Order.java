@@ -26,14 +26,16 @@ public class Order {
     }
 
     @Column(name = "CLIENT")
-    private AuthorizedClient client;
-    public String getClient(){
-        return client.toString();
+    private int client;
+    public int getClient(){
+        return client;
     }
-
+    public void setClient(int cl){client = cl;}
 
     @Column(name = "ORDERLINE")
-    private List<OrderLine> goodsList = new ArrayList<>();
+    private int goodsList;
+    public int getGoodsList(){return goodsList;}
+    public void setGoodsList(int gl){goodsList = gl;}
 
     @Column(name = "TOTALPRICE")
     private Integer totalPrice;
@@ -46,6 +48,7 @@ public class Order {
     public String getStatus(){
         return status.toString();
     }
+    public void setStatus(Status st){status = st;}
 
     @Column(name = "DATE")
     private Date date;

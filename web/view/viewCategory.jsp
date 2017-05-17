@@ -14,15 +14,15 @@
 </head>
 <body>
 
-<c:if test="${!empty categoryList}">
+<c:if test="${!empty CategoryList}">
   <table class="data">
     <tr>
-      <th><spring:message code="label.firstname" /></th>
+      <th>  category</th>
             <th>&nbsp;</th>
     </tr>
-    <c:forEach items="${contactList}" var="contact">
+    <c:forEach items="${CategoryList}" var="category">
       <tr>
-        <td>${category.category}</td>
+        <td>  ${category}</td>
 
       </tr>
     </c:forEach>

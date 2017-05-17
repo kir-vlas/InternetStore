@@ -22,11 +22,30 @@ public class OrderLine {
 
 
     @Column(name = "ORDER")
-    private Order order;
+    private int order;
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    public int getGood() {
+        return good;
+    }
+
+    public void setGood(int good) {
+        this.good = good;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     @Column(name = "GOOD")
-    private Good good;
+    private int good;
 
     @Column(name = "QUANTITY")
     private Integer quantity;

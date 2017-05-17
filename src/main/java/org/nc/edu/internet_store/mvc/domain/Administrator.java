@@ -21,27 +21,38 @@ public class Administrator {
         return id;
     }
 
+
     @Column(name = "FIRSTNAME")
     private String firstName;
-
     public String getFirstName() {
         return firstName;
     }
+    public void setFirstName(String name){firstName = name;}
+
+
+    @Column(name = "PASSWORD")
+    private String password;
+    public String getPassword(){return password;}
+    public void setPassword(String pass){password = pass;}
+
 
 
     @Column(name = "LASTNAME")
     private String lastName;
-
     public String getLastName() {
         return lastName;
     }
-
+    public void setLastName(String name){lastName = name;}
 
     @Column(name = "PHONE")
     private String phone;
 
     public String getPhone() {
         return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 
@@ -52,12 +63,17 @@ public class Administrator {
         return tin;
     }
 
+    public void setTin(String tin) {
+        this.tin = tin;
+    }
 
     @Column(name = "HIRINGDATE")
     private Date hiringDate;
     public Date getHiringDate(){
         return hiringDate;
     }
-
+    public void setHiringDate(Date hiringDate) {
+        this.hiringDate = hiringDate;
+    }
 
 }
