@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
@@ -24,6 +27,23 @@ public class CategoryController {
         map.put("Category", new Category());
         map.put("CategoryList", categoryService.listCategory());
         return "/viewCategory";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addCategory(@ModelAttribute("category") Category Category,
+                             BindingResult result) {
+
+        categoryService.addCategory(Category);
+
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/delete/{categoryId}")
+    public String deleteContact(@PathVariable("categoryId") Integer categoryId) {
+
+        categoryService.removeCategory(categoryId);
+
+        return "redirect:/index";
     }
 
     @RequestMapping("/")

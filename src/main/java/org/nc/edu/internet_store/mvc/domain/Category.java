@@ -1,24 +1,20 @@
 package org.nc.edu.internet_store.mvc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "CATEGORIES")
 public class Category {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 
     public Integer getId(){
         return id;
     }
-
+    public void setId(Integer id){this.id = id;}
 
     @Column(name = "CATEGORY")
     private String category;
@@ -27,7 +23,7 @@ public class Category {
         return category;
     }
 
-    public void setCategory(String name){
-        category = name;
+    public void setCategory(String category){
+        this.category = category;
     }
 }

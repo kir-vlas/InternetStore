@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
@@ -14,6 +15,22 @@
 </head>
 <body>
 
+<form:form method="post" action="add" commandName="Category">
+
+  <table>
+    <tr>
+      <td>Category</td>
+      <td><form:input path="category" /></td>
+    </tr>
+
+      <td colspan="2"><input type="submit"
+                             value="Add category" /></td>
+    </tr>
+  </table>
+</form:form>
+<br/>
+
+<h2>List</h2>
 <c:if test="${!empty CategoryList}">
   <table class="data">
     <tr>
@@ -22,8 +39,8 @@
     </tr>
     <c:forEach items="${CategoryList}" var="category">
       <tr>
-        <td>  ${category}</td>
-
+        <td>  ${category.category}</td>
+        <td><a href="delete/${category.id}">  delete</a></td>
       </tr>
     </c:forEach>
   </table>

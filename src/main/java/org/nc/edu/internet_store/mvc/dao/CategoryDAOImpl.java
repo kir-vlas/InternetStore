@@ -8,10 +8,12 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.hibernate.Query;
+
+
 
 
 @Repository
-
 public class CategoryDAOImpl implements CategoryDAO{
 
     @Autowired
@@ -26,7 +28,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 
     @SuppressWarnings("unchecked")
     public List<Category> listCategory() {
-        String query = "select category from Category ";
+        String query = "    from Category ";
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         List<Category> list = session.createQuery(query).list();
@@ -34,12 +36,14 @@ public class CategoryDAOImpl implements CategoryDAO{
         return list;
     }
 
-    public void removeCategory(Integer id) {
+    public void removeCategory(Integer Id) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Category category = (Category) session.load(Category.class, id);
+        Category category = session.load(Category.class, Id);
         if (null != category) {
-            session.delete(category);
+            Query query = session.createQuery("delete Category where id = :id");
+            query.setParameter("id",Id);
+            query.executeUpdate();
         }
         session.close();
     }
