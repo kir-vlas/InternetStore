@@ -1,13 +1,9 @@
 package org.nc.edu.internet_store.mvc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "GOODS")
+@Table(name = "goods")
 public class Good {
 
     @Id
@@ -20,7 +16,7 @@ public class Good {
     }
 
 
-    @Column(name = "Title")
+    @Column(name = "TITLE")
     private String title;
 
     public String getTitle(){
@@ -44,13 +40,14 @@ public class Good {
     }
 
 
-    @Column(name = "CATEGORY")
-    private int category;
-    public int getCategory(){
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY")
+    private Category category;
+    public Category getCategory(){
         return category;
     }
 
-    public void setCategory(int category){
+    public void setCategory(Category category){
         this.category = category;
     }
 

@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.hibernate.Query;
 
-
-
-
 @Repository
 public class CategoryDAOImpl implements CategoryDAO{
 
@@ -36,15 +33,13 @@ public class CategoryDAOImpl implements CategoryDAO{
         return list;
     }
 
-    public void removeCategory(Integer Id) {
+    public void removeCategory(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Category category = session.load(Category.class, Id);
-        if (null != category) {
-            Query query = session.createQuery("delete Category where id = :id");
-            query.setParameter("id",Id);
-            query.executeUpdate();
-        }
+        //Category category = session.load(Category.class, id);
+        Query query = session.createQuery("delete from Category where id = :id");
+        query.setParameter("id",id);
+        query.executeUpdate();
         session.close();
     }
 }
