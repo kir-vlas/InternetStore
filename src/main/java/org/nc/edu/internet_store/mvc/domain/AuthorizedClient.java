@@ -1,54 +1,76 @@
 package org.nc.edu.internet_store.mvc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "CLIENTS")
-public class AuthorizedClient {
+@Table(name = "clients")
+public class AuthorizedClient extends Client{
 
-    private enum Credit{HIGH,MEDIUM,LOW}
+    public static final String ROLE_CLIENT = "CLIENT";
+
+    @Column(name = "ACTIVE")
+    private boolean active;
+
+    @Column(name = "USERROLE")
+    private String role;
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Column(name = "FIRSTNAME")
+
     private String firstName;
+
+    @Column(name = "LASTNAME")
+    private String lastName;
+
+    @Column(name = "ADRESS")
+    private String Adress;
+
+    @Column(name = "LOGIN")
+    private String login;
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Column(name = "EMAIL")
+    private String eMail;
 
     @Column(name = "PASSWORD")
     private String password;
     public String getPassword(){return password;}
     public void setPassword(String pass){password = pass;}
 
-
-    @Column(name = "LASTNAME")
-    private String lastName;
-
-    @Column(name = "ORDER_LIST")
-    private int orderList;
-
-    @Column(name = "ADRESS")
-    private String Adress;
-
-
-    @Column(name = "EMAIL")
-    private String eMail;
-
-
     @Column(name = "PHONE")
     private String phone;
 
+    public boolean isActive() {
+        return active;
+    }
 
-    @Column(name = "CREDIT")
-    private Credit credit;
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -56,12 +78,6 @@ public class AuthorizedClient {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-
-
-    public void setOrderList(int orderList) {
-        this.orderList = orderList;
     }
 
     public void setAdress(String adress) {
@@ -74,14 +90,6 @@ public class AuthorizedClient {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public void setCredit(Credit credit) {
-        this.credit = credit;
-    }
-
-    public int getOrderList() {
-        return orderList;
     }
 
     public Integer getId() {
@@ -108,7 +116,4 @@ public class AuthorizedClient {
         return phone;
     }
 
-    public String getCredit() {
-        return credit.toString();
-    }
 }

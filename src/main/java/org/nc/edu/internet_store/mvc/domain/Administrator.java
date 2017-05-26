@@ -2,25 +2,47 @@ package org.nc.edu.internet_store.mvc.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-@Table(name = "ADMINISTRATOR")
+@Table(name = "administrator")
 public class Administrator {
+
+    public static final String ROLE_CLIENT = "ADMINISTRATOR";
+
+    @Column(name = "ACTIVE")
+    private boolean active;
+
+    @Column(name = "USERROLE")
+    private String role;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     public Integer getId(){
         return id;
     }
-
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @Column(name = "FIRSTNAME")
     private String firstName;
@@ -29,6 +51,15 @@ public class Administrator {
     }
     public void setFirstName(String name){firstName = name;}
 
+
+    @Column(name = "LOGIN")
+    private String login;
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     @Column(name = "PASSWORD")
     private String password;

@@ -23,7 +23,7 @@
 
 
 
-    <mvc:view-controller path="/index.html" view-name="/viewCategory" />
+    <mvc:view-controller path="/index.html" view-name="/viewGood" />
 
     <context:component-scan base-package="org.nc.edu.internet_store.mvc" />
 </beans>

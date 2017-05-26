@@ -1,19 +1,19 @@
 package org.nc.edu.internet_store.mvc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "ORDER_LIST")
+@Table(name = "orderlist")
 public class OrderList {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
     public int getId(){return id;}
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     @Column(name = "ORDER")
     private int order;
@@ -21,4 +21,10 @@ public class OrderList {
     public void setOrder(int order){
         this.order = order;
     }
+
+
+
+
+
+
 }

@@ -1,6 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-</beans>
+    <http>
+        <access-denied-handler error-page="/view/error403.jsp"/>
+
+        <intercept-url pattern="/adminPresent/**" access="hasRole('ROLE_ADMIN')" />
+        <logout logout-url="/logout" logout-success-url="/index" />
+
+        <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
+        <form-login login-page="/login"
+                    username-parameter="userName"
+                    password-parameter="password"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-failure-url="/login?login_error='true'"/>
+        <remember-me />
+    </http>
+
+    <global-method-security jsr250-annotations="enabled"
+                                     proxy-target-class="true"/>
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="1" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.nc.edu.internet_store.mvc.domain.Good;
 import org.nc.edu.internet_store.mvc.dao.GoodsDAO;
 
+@Service
+@Transactional
 public class GoodServiceImpl implements GoodService{
     @Autowired
     private GoodsDAO goodsDAO;
@@ -22,6 +24,9 @@ public class GoodServiceImpl implements GoodService{
     public List<Good> listGood() {
         return goodsDAO.listGood();
     }
+
+    @Transactional
+    public List<Good> listGood(Integer id){return goodsDAO.listGood(id);}
 
     @Transactional
     public void deleteGood(Integer id) {

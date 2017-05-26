@@ -4,14 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "orders")
 public class Order {
 
     private enum Status{RECEIVED, BUILDING, DISATCHED, DELIVERED}
@@ -32,10 +28,11 @@ public class Order {
     }
     public void setClient(int cl){client = cl;}
 
-    @Column(name = "ORDERLINE")
-    private int goodsList;
-    public int getGoodsList(){return goodsList;}
-    public void setGoodsList(int gl){goodsList = gl;}
+    @ManyToOne
+    @JoinColumn(name = "ORDERLINE")
+    private OrderLine orderLine;
+    public OrderLine getOrderLine(){return orderLine;}
+    public void setOrderLine(OrderLine gl){orderLine = gl;}
 
     @Column(name = "TOTALPRICE")
     private Integer totalPrice;
