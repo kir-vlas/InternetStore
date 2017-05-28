@@ -27,18 +27,14 @@ public class AdminController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String redir(){
-        return "redirect:/login";
-    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
     public String login(Model model){
         return "/viewLogin";
     }
 
 
-    @RequestMapping(value = "/adminPresent" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/admin" ,method = RequestMethod.GET)
     public String listCategories(Map<String, Object> map){
         map.put("Category", new Category());
         map.put("CategoryList", categoryService.listCategory());
@@ -51,7 +47,7 @@ public class AdminController {
 
         categoryService.addCategory(Category);
 
-        return "redirect:/adminPresent";
+        return "redirect:/admin";
     }
 
     @RequestMapping("admin/delete/{categoryId}")
@@ -59,6 +55,6 @@ public class AdminController {
 
         categoryService.removeCategory(categoryId);
 
-        return "redirect:/adminPresent";
+        return "redirect:/admin";
     }
 }

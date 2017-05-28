@@ -25,9 +25,8 @@
         <property name="show_sql">true</property>
 
         <mapping class="org.nc.edu.internet_store.mvc.domain.Category" />
-        <mapping class="org.nc.edu.internet_store.mvc.domain.AuthorizedClient" />
+        <mapping class="org.nc.edu.internet_store.mvc.domain.Account" />
         <mapping class="org.nc.edu.internet_store.mvc.domain.Order" />
-        <mapping class="org.nc.edu.internet_store.mvc.domain.Administrator" />
         <mapping class="org.nc.edu.internet_store.mvc.domain.Good" />
         <mapping class="org.nc.edu.internet_store.mvc.domain.OrderLine" />
 

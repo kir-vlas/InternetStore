@@ -1,7 +1,7 @@
 package org.nc.edu.internet_store.mvc.service;
 
-import org.nc.edu.internet_store.mvc.dao.AdminDAO;
-import org.nc.edu.internet_store.mvc.domain.Administrator;
+import org.nc.edu.internet_store.mvc.dao.AccountDAO;
+import org.nc.edu.internet_store.mvc.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,24 +9,26 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBAdminAuthenticatorService implements UserDetailsService {
+@Service("userDetailsServiceImpl")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private AdminDAO adminDAO;
+    private AccountDAO accountDAO;
 
     @Override
     public UserDetails loadUserByUsername(String login){
-        Administrator admin = adminDAO.findAdmin(login);
+        Account account = accountDAO.findAccount(login);
 
-        if (admin == null) {
+        if (account == null) {
             throw new UsernameNotFoundException("User " + login + " was not found in the database");
         }
 
-        String role = admin.getRole();
+        String role = account.getRole();
 
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 
@@ -34,14 +36,14 @@ public class DBAdminAuthenticatorService implements UserDetailsService {
 
         grantList.add(authority);
 
-        boolean enabled = admin.isActive();
+        boolean enabled = account.isActive();
 
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        UserDetails userDetails = (UserDetails) new User(admin.getLogin(),
-                admin.getPassword(),enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantList);
+        UserDetails userDetails = (UserDetails) new User(account.getLogin(),
+                account.getPassword(),enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantList);
         return userDetails;
     }
 }

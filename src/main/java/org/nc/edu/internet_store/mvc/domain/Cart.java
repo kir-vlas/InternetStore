@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Cart {
     private int orderNum;
 
-    private AuthorizedClient client;
+    private Account client;
 
     private final List<CartLine> goodsList = new ArrayList<>();
 
@@ -18,11 +18,11 @@ public class Cart {
         this.orderNum = orderNum;
     }
 
-    public AuthorizedClient getClient() {
+    public Account getClient() {
         return client;
     }
 
-    public void setClient(AuthorizedClient client) {
+    public void setClient(Account client) {
         this.client = client;
     }
 

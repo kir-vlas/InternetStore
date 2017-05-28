@@ -31,10 +31,11 @@
 
     <form method="POST"
           action="${pageContext.request.contextPath}/j_spring_security_check">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <table>
             <tr>
                 <td>User Name *</td>
-                <td><input name="userName" /></td>
+                <td><input name="login" /></td>
             </tr>
 
             <tr>

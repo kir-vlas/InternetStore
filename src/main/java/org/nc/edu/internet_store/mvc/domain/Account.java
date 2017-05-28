@@ -6,10 +6,11 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "administrator")
-public class Administrator {
+@Table(name = "accounts")
+public class Account {
 
-    public static final String ROLE_CLIENT = "ADMINISTRATOR";
+    public static final String ROLE_ADMIN = "ADMIN";
+    public static final String ROLE_CLIENT = "CLIENT";
 
     @Column(name = "ACTIVE")
     private boolean active;
