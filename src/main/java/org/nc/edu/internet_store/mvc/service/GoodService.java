@@ -8,7 +8,9 @@ public interface GoodService {
 
     public List<Good> listGood();
 
-    public List<Good> listGood(Integer Id);
+    public List<Good> listGoodByCategory(Integer Id);
+
+    public List<Good> listGoodById(Integer Id);
 
     public void deleteGood(Integer id);
 }

@@ -32,8 +32,17 @@ public class GoodsDAOImpl implements GoodsDAO{
     }
 
     @SuppressWarnings("unchecked")
-    public List<Good> listGood(Integer id){
+    public List<Good> listGoodByCategory(Integer id){
         String query = "select g from Good g inner join g.category where g.category = " + id.toString();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<Good> list = session.createQuery(query).list();
+        session.close();
+        return list;
+    }
+
+    public List<Good> listGoodById(Integer id){
+        String query = "select g from Good g inner join g.category where g.id = " + id.toString();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         List<Good> list = session.createQuery(query).list();

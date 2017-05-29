@@ -45,7 +45,7 @@
                 <td>  ${good.category.category}</td>
                 <td>  ${good.description}</td>
                 <td>  ${good.price}$</td>
-                <td>  <a href="">Add to cart</a></td>
+                <td>  <a href="/addToCart/${good.id}">Add to cart</a></td>
             </tr>
         </c:forEach>
     </table>

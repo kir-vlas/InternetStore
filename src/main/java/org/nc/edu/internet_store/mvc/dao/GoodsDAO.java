@@ -8,7 +8,9 @@ public interface GoodsDAO {
 
     public List<Good> listGood();
 
-    public List<Good> listGood(Integer id);
+    public List<Good> listGoodByCategory(Integer id);
+
+    public List<Good> listGoodById(Integer id);
 
     public void deleteGood(Integer id);
 }

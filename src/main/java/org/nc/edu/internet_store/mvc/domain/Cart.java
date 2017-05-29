@@ -8,7 +8,7 @@ public class Cart {
 
     private Account client;
 
-    private final List<CartLine> goodsList = new ArrayList<>();
+    private final List<CartLine> goodsList = new ArrayList<CartLine>();
 
     public int getOrderNum() {
         return orderNum;
@@ -73,35 +73,5 @@ public class Cart {
         CartLine line = this.findLineById(id);
         if (line != null)
             this.goodsList.remove(line);
-    }
-}
-
-class CartLine {
-
-    private Good good;
-    private int quantity;
-
-    public Good getGood() {
-        return good;
-    }
-
-    public void setGood(Good good) {
-        this.good = good;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public CartLine(){
-        this.quantity = 0;
-    }
-
-    public double getAmount(){
-        return this.good.getPrice() * this.quantity;
     }
 }
