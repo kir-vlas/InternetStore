@@ -17,7 +17,7 @@
 <body>
 
 <form:form method="POST" modelAttribute="cartForm"
-           action="${pageContext.request.contextPath}/shoppingCart">
+           action="${pageContext.request.contextPath}/cart">
 
     <c:forEach items="${cartForm.goodsList}" var="goodsList"
                varStatus="varStatus">
@@ -25,7 +25,7 @@
             <ul>
 
                 <li>Id: ${goodsList.good.id} <form:hidden
-                        path="goodsList[0].good.id" />
+                        path="goodsList[${varStatus.index}].good.id" />
 
                 </li>
                 <li>Name: ${goodsList.good.title}</li>
@@ -35,7 +35,7 @@
 
                        </span></li>
                 <li>Quantity: <form:input
-                        path="goodsList[0].quantity" /></li>
+                        path="goodsList[${varStatus.index}].quantity" /></li>
                 <li>Subtotal:
                     <span class="subtotal">
 
@@ -49,7 +49,7 @@
             </ul>
         </div>
     </c:forEach>
-    <div style="clear: both"></div>
+
     <input class="button-update-sc" type="submit" value="Update Quantity" />
 
     <a class="navi-item"

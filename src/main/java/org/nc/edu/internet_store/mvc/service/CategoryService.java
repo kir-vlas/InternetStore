@@ -9,5 +9,7 @@ public interface CategoryService {
 
     public List<Category> listCategory();
 
+    public Category findCategoryById(Integer id);
+
     public void removeCategory(Integer id);
 }

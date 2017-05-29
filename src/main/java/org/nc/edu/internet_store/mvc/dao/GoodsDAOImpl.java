@@ -51,6 +51,11 @@ public class GoodsDAOImpl implements GoodsDAO{
     }
 
     public void deleteGood(Integer id){
-        throw new NotImplementedException();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("delete from Good where id = :id");
+        query.setParameter("id",id);
+        query.executeUpdate();
+        session.close();
     }
 }

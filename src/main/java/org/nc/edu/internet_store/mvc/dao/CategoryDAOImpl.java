@@ -33,6 +33,14 @@ public class CategoryDAOImpl implements CategoryDAO{
         return list;
     }
 
+    public Category findCategoryById(Integer id){
+        String query = "select c from Category c where c.id = " + id.toString();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Category category = (Category) session.createQuery(query).list().get(0);
+        return category;
+    }
+
     public void removeCategory(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();

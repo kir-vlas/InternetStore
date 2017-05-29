@@ -50,7 +50,10 @@
         </c:forEach>
     </table>
 </c:if>
-
+<div>
+    <br/>
+    <a href="/cart">View cart</a>
+</div>
 <div>
     <br/>
     <a href="/admin">Admin Panel</a>

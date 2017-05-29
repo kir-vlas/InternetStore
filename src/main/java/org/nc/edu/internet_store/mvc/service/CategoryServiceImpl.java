@@ -28,6 +28,11 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Transactional
+    public Category findCategoryById(Integer id){
+        return categoryDAO.findCategoryById(id);
+    }
+
+    @Transactional
     public void removeCategory(Integer id){
         categoryDAO.removeCategory(id);
     }

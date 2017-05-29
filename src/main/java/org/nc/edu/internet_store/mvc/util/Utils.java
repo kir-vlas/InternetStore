@@ -2,6 +2,7 @@ package org.nc.edu.internet_store.mvc.util;
 
 import javax.servlet.http.HttpServletRequest;
 import org.nc.edu.internet_store.mvc.domain.Cart;
+import org.nc.edu.internet_store.mvc.domain.Category;
 
 public class Utils {
 
@@ -25,5 +26,13 @@ public class Utils {
 
     public static Cart getLastOrderedCartInSession(HttpServletRequest request) {
         return (Cart) request.getSession().getAttribute("lastOrderedCart");
+    }
+
+    public static void saveCategory(HttpServletRequest request,Category category){
+        request.getSession().setAttribute("categoryForSave",category);
+    }
+
+    public static Category getSavedCategory(HttpServletRequest request){
+        return (Category) request.getSession().getAttribute("categoryForSave");
     }
 }

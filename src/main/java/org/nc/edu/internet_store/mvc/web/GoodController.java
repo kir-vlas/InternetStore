@@ -67,6 +67,17 @@ public class GoodController {
         return "/viewCart";
     }
 
+    @RequestMapping(value = { "/cart" }, method = RequestMethod.POST)
+    public String shoppingCartUpdateQty(HttpServletRequest request, //
+                                        Model model, //
+                                            @ModelAttribute("cartForm") Cart cartForm) {
+
+        Cart cart = Utils.getCartInSession(request);
+        cart.updateQuantity(cartForm);
+
+        return "redirect:/cart";
+    }
+
     @RequestMapping(value = {"/cart/removegood"}, method = RequestMethod.GET)
     public String removeGoodHandler(HttpServletRequest request, @RequestParam(value = "id", defaultValue = "0")  String idStr){
         Integer id = Integer.parseInt(idStr);

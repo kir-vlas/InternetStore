@@ -35,5 +35,6 @@
         </c:forEach>
     </table>
 </c:if>
+<a href="/index">Return</a>
 </body>
 </html>

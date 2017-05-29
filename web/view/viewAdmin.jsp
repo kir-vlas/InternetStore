@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Admin Panel</title>
-    <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
+    <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
@@ -39,10 +39,31 @@
         </tr>
         <c:forEach items="${CategoryList}" var="category">
             <tr>
-                <td>  ${category.category}</td>
-                <td><a href="admin/delete/${category.id}">  delete</a></td>
+                <td>  <a href="/admin/addGood?id=${category.id}">${category.category}</a></td>
+                <td>  <a href="/admin/delete/${category.id}">  delete</a></td>
             </tr>
         </c:forEach>
+    </table>
+</c:if>
+
+<h2>Goods</h2>
+<c:if test="${!empty GoodList}">
+    <table class="data">
+    <tr>
+    <th>  Good</th>
+    <th>  Category</th>
+    <th>  Description</th>
+    <th>  Price</th>
+    </tr>
+    <c:forEach items="${GoodList}" var="good">
+        <tr>
+            <td>  ${good.title}</td>
+            <td>  ${good.category.category}</td>
+            <td>  ${good.description}</td>
+            <td>  ${good.price}$</td>
+            <td>  <a href="/admin/deleteGood/${good.id}">delete</a></td>
+        </tr>
+    </c:forEach>
     </table>
 </c:if>
 
