@@ -1,5 +1,7 @@
 package org.nc.edu.internet_store.mvc.domain;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import javax.persistence.*;
 
 
@@ -30,6 +32,16 @@ public class OrderLine {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER")
+    private Order order;
+    public Order getOrder() {
+        return order;
+    }
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Column(name = "GOOD")

@@ -45,6 +45,24 @@ public class Account {
         this.id = id;
     }
 
+    @Column(name = "EMAIL")
+    private String email;
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "ADRESS")
+    private String adress;
+    public String getAdress() {
+        return adress;
+    }
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
     @Column(name = "FIRSTNAME")
     private String firstName;
     public String getFirstName() {

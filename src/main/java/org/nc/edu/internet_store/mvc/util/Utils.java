@@ -3,6 +3,7 @@ package org.nc.edu.internet_store.mvc.util;
 import javax.servlet.http.HttpServletRequest;
 import org.nc.edu.internet_store.mvc.domain.Cart;
 import org.nc.edu.internet_store.mvc.domain.Category;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class Utils {
 
@@ -35,4 +36,11 @@ public class Utils {
     public static Category getSavedCategory(HttpServletRequest request){
         return (Category) request.getSession().getAttribute("categoryForSave");
     }
+
+    public static void storeCurrentUser(HttpServletRequest request, Integer id){
+        request.getSession().setAttribute("userId", id);
+
+    }
+
+
 }

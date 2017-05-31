@@ -15,6 +15,9 @@ public class Good {
         return id;
     }
 
+    public void setId(Integer id){
+        this.id = id;
+    }
 
     @Column(name = "TITLE")
     private String title;

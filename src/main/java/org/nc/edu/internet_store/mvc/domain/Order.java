@@ -14,38 +14,49 @@ public class Order {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     public Integer getId(){
         return id;
     }
 
-    @Column(name = "CLIENT")
-    private int client;
-    public int getClient(){
+    @ManyToOne
+    @JoinColumn(name = "CLIENT")
+    private Account client;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Account getClient(){
         return client;
     }
-    public void setClient(int cl){client = cl;}
-
-    @ManyToOne
-    @JoinColumn(name = "ORDERLINE")
-    private OrderLine orderLine;
-    public OrderLine getOrderLine(){return orderLine;}
-    public void setOrderLine(OrderLine gl){orderLine = gl;}
+    public void setClient(Account cl){client = cl;}
 
     @Column(name = "TOTALPRICE")
-    private Integer totalPrice;
-    public Integer getTotalPrice(){
+    private double totalPrice;
+    public double getTotalPrice(){
         return totalPrice;
+    }
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Column(name = "STATUS")
-    private Status status;
+    private Integer status;
     public String getStatus(){
         return status.toString();
     }
-    public void setStatus(Status st){status = st;}
+    public void setStatus(Integer st){status = st;}
 
     @Column(name = "DATE")
     private Date date;

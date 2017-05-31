@@ -10,31 +10,45 @@
     <title>${!(empty GoodList)?GoodList.get(0).category.category:"Not Found"}</title>
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
+    <link href="/resources/css/style.css" rel="stylesheet"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 </head>
 <body>
+<div id="main">
+    <jsp:include page="shared/_header.jsp"/>
+    <jsp:include page="shared/_menu.jsp"/>
 
+    <div id="left">
+        <h2>Categories</h2>
+        <c:if test="${!empty CategoryList}">
+            <table class="data">
+                <c:forEach items="${CategoryList}" var="category">
+                    <tr>
+                        <td><a href="${category.id}">${category.category}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+    </div>
 
-<h2>Goods</h2>
-<c:if test="${!empty GoodList}">
-    <table class="data">
-        <tr>
-            <th>  Good</th>
-            <th>  Category</th>
-            <th>  Description</th>
-            <th>  Price</th>
-        </tr>
-        <c:forEach items="${GoodList}" var="good">
-            <tr>
-                <td>  ${good.title}</td>
-                <td>  ${good.category.category}</td>
-                <td>  ${good.description}</td>
-                <td>  ${good.price}$</td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-<a href="/index">Return</a>
+    <div id="right">
+        <h2>Goods</h2>
+        <c:if test="${!empty GoodList}">
+            <div id="goods">
+
+                <c:forEach items="${GoodList}" var="good">
+                    <div class="goodsm">
+                            ${good.title}
+                            ${good.price}
+                        <a href="/addToCart/${good.id}">Add to cart</a>
+                    </div>
+                </c:forEach>
+
+            </div>
+        </c:if>
+    </div>
+    <jsp:include page="shared/_footer.jsp"/>
+</div>
 </body>
 </html>

@@ -10,12 +10,15 @@
     <title>Login</title>
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
+    <link href="/resources/css/style.css" rel="stylesheet"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 </head>
 <body>
-
-<div class="login-container">
+<div id="main">
+    <jsp:include page="shared/_header.jsp"/>
+    <jsp:include page="shared/_menu.jsp"/>
+<div id="login-container">
 
     <h3>Enter username and password</h3>
     <br>
@@ -52,6 +55,8 @@
 
     <span class="error-message">${error }</span>
 
+</div>
+    <jsp:include page="shared/_footer.jsp"/>
 </div>
 </body>
 </html>

@@ -5,4 +5,6 @@ import org.nc.edu.internet_store.mvc.domain.Account;
 
 public interface AccountDAO {
     public Account findAccount(String login);
+
+    public void createAccount(Account account);
 }

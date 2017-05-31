@@ -5,21 +5,26 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-    <http>
+    <http >
         <access-denied-handler error-page="/view/error403.jsp"/>
 
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <logout logout-url="/logout" logout-success-url="/index" />
 
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
-        <form-login login-page="/adminlogin"
+
+        <form-login login-page="/login"
                     username-parameter="login"
                     password-parameter="password"
                     login-processing-url="/j_spring_security_check"
-                    authentication-failure-url="/adminlogin?error=true"
-                    default-target-url="/admin"/>
+                    authentication-failure-url="/login?error=true"
+                    default-target-url="/default"/>
+
+
         <remember-me />
+
     </http>
+
 
     <beans:bean id="accountDAO" class="org.nc.edu.internet_store.mvc.dao.AccountDAOImpl"/>
     <beans:bean id="userDetailsService" class="org.nc.edu.internet_store.mvc.service.UserDetailsServiceImpl"/>

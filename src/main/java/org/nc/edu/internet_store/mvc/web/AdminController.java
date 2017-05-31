@@ -27,7 +27,7 @@ public class AdminController {
     private CategoryService categoryService;
 
 
-    @RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminLogin", method = RequestMethod.GET)
     public String login(Model model){
         return "/viewLogin";
     }

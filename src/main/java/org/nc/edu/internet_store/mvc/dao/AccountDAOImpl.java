@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.nc.edu.internet_store.mvc.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO {
@@ -25,4 +26,10 @@ public class AccountDAOImpl implements AccountDAO {
         return acc;
     }
 
+    public void createAccount(Account account){
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.save(account);
+        session.close();
+    }
 }

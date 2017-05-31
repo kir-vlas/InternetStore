@@ -1,0 +1,109 @@
+#header{
+    height: 175px;
+    margin: 0 auto;
+}
+
+#main{
+    width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#left{
+    padding-left: 3px;
+    width: 200px;
+    float: left;
+    height: 100%;
+}
+
+#right{
+    width: 980px;
+    height: 100%;
+    float: right;
+}
+
+#footer{
+    margin-top: 10px;
+    text-align: center;
+    height: 40px;
+}
+
+#hor_menu{
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#hor_left{
+    width: 700px;
+    float:left;
+    border-right:1px solid black;
+}
+
+#hor_right{
+    width:495px;
+    float:right;
+}
+
+ul.hmenu{
+    margin:0px;
+    padding:10px;
+}
+
+ul.hmenu li{
+    border-right:1px solid #996633;
+    padding:3px;
+    display: inline;
+    text-decoration:none;
+}
+
+li a{
+    text-decoration:none;
+    color:black;
+}
+
+#goods{
+    width: 500px;
+}
+
+.goodsm{
+    width: 550px;
+    height: 130px;
+    border: 1px solid black;
+}
+
+#left a{
+    text-decoration:none;
+    font-size:12pt;
+    color: black;
+    display:block;
+}
+
+.clear{
+    clear: both;
+}
+
+.good-preview-container{
+    margin: 0 auto;
+    width: 450px;
+    height: 200px;
+}
+
+#price{
+    color: #204d74;
+}
+
+#login-container{
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.input-container{
+    margin:0 auto;
+    width: 300px;
+    height: 40px;
+}
+
+.inputform{
+    float: right;
+}
