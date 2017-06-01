@@ -12,6 +12,7 @@ public class Order {
 
     private enum Status{RECEIVED, BUILDING, DISATCHED, DELIVERED}
 
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +61,7 @@ public class Order {
 
     @Column(name = "DATE")
     private Date date;
-    public String getDate(){
-        return date.toString();
+    public Date getDate(){
+        return date;
     }
 }

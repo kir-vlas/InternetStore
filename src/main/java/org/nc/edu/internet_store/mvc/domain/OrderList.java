@@ -1,30 +1,26 @@
 package org.nc.edu.internet_store.mvc.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(name = "orderlist")
+
 public class OrderList {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
-    public int getId(){return id;}
-    public void setId(int id) {
-        this.id = id;
+
+    private Order order;
+    public Order getOrder() {
+        return order;
     }
-
-
-    @Column(name = "ORDER")
-    private int order;
-    public int getOrder(){return order;}
-    public void setOrder(int order){
+    public void setOrder(Order order) {
         this.order = order;
     }
 
 
-
-
-
+    private List<OrderLine> orderLines;
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+    public void setOrderLines(List<OrderLine> orderLines) {
+        this.orderLines = orderLines;
+    }
 
 }

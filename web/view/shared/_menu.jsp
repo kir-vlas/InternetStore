@@ -35,7 +35,7 @@
                     <a href="${pageContext.request.contextPath}/login">Login</a>
                 </li>
                 <li>
-                    <a href="/register">Register</a>
+                    <a href="${pageContext.request.contextPath}/register">Register</a>
                 </li>
             </ul>
 

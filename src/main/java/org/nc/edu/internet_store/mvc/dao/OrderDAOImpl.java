@@ -41,11 +41,20 @@ public class OrderDAOImpl implements OrderDAO{
     }
 
     @SuppressWarnings("unchecked")
-    public List<Order> listOrderByClient(Account account) {
+    public List<OrderList> listOrderByClient(Account account) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        String query = "select o from Order o inner join OrderLine ol on o.id = ol.order.id where o.client.id = "+account.getId();
-        List<Order> orderList = session.createQuery(query).list();
+        List<OrderList> orderList = new ArrayList<>();
+        String query = "select o from Order o where o.client.id = "+account.getId();
+        List<Order> orders = session.createQuery(query).list();
+        for (Order order : orders){
+            query = "select ol from OrderLine ol where ol.order.id = "+order.getId();
+            List<OrderLine> orderLines = session.createQuery(query).list();
+            OrderList orderListl = new OrderList();
+            orderListl.setOrder(order);
+            orderListl.setOrderLines(orderLines);
+            orderList.add(orderListl);
+        }
         return orderList;
     }
 

@@ -18,8 +18,30 @@
     <div id="main">
         <jsp:include page="shared/_header.jsp"/>
         <jsp:include page="shared/_menu.jsp"/>
+        <div id="order-button">
+            <a href="/orders?client=${client.login}">Orders</a>
+        </div>
         <div id="client-container">
-
+            <div class="client-field">
+                First name:
+                <span>${client.firstName}</span>
+            </div>
+            <div class="client-field">
+                Last name:
+                <span>${client.lastName}</span>
+            </div>
+            <div class="client-field">
+                E-mail:
+                <span>${client.email}</span>
+            </div>
+            <div class="client-field">
+                Phone:
+                <span>${client.phone}</span>
+            </div>
+            <div class="client-field">
+                Address:
+                <span>${client.address}</span>
+            </div>
         </div>
         <jsp:include page="shared/_footer.jsp"/>
     </div>
