@@ -32,7 +32,7 @@
         <security:authorize access="hasRole('ROLE_ANONYMOUS')">
             <ul class="hmenu">
                 <li>
-                    <a href="${pageContext.request.contextPath}/clientLogin">Login</a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
                 </li>
                 <li>
                     <a href="/register">Register</a>

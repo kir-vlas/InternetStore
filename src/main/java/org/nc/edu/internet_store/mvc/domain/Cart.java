@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class    Cart {
-    private int orderNum;
+    private int orderId;
 
     private Account client;
 
     private final List<CartLine> goodsList = new ArrayList<CartLine>();
 
-    public int getOrderNum() {
-        return orderNum;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public Account getClient() {

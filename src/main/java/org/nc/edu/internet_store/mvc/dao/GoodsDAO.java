@@ -10,7 +10,9 @@ public interface GoodsDAO {
 
     public List<Good> listGoodByCategory(Integer id);
 
-    public List<Good> listGoodById(Integer id);
+    public Good listGoodById(Integer id);
+
+    public void updateGood(Good good);
 
     public void deleteGood(Integer id);
 }

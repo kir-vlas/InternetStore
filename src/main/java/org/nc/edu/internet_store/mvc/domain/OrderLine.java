@@ -13,29 +13,34 @@ public class OrderLine {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     public Integer getId(){
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getGood() {
+    @ManyToOne
+    @JoinColumn(name = "GOOD")
+    private Good good;
+    public Good getGood() {
         return good;
     }
-
-    public void setGood(int good) {
+    public void setGood(Good good) {
         this.good = good;
     }
 
+    @Column(name = "QUANTITY")
+    private Integer quantity;
+    public Integer getQuantity(){
+        return quantity;
+    }
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
     @ManyToOne
-    @JoinColumn(name = "ORDER")
+    @JoinColumn(name = "ORDERID")
     private Order order;
     public Order getOrder() {
         return order;
@@ -43,15 +48,4 @@ public class OrderLine {
     public void setOrder(Order order) {
         this.order = order;
     }
-
-    @Column(name = "GOOD")
-    private int good;
-
-    @Column(name = "QUANTITY")
-    private Integer quantity;
-
-    public Integer getQuantity(){
-        return quantity;
-    }
-
 }

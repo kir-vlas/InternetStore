@@ -29,7 +29,12 @@ public class GoodServiceImpl implements GoodService{
     public List<Good> listGoodByCategory(Integer id){return goodsDAO.listGoodByCategory(id);}
 
     @Transactional
-    public List<Good> listGoodById(Integer id){return goodsDAO.listGoodById(id);}
+    public Good listGoodById(Integer id){return  goodsDAO.listGoodById(id);}
+
+    @Transactional
+    public void updateGood(Good good){
+        goodsDAO.updateGood(good);
+    }
 
     @Transactional
     public void deleteGood(Integer id) {

@@ -10,5 +10,7 @@ public interface CategoryDAO {
 
     public Category findCategoryById(Integer id);
 
+    public void updateCategory(Integer id, String cat);
+
     public void removeCategory(Integer id);
 }

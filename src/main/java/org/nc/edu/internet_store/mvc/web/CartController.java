@@ -43,7 +43,7 @@ public class CartController {
         Integer id = Integer.parseInt(idStr);
         Good good = null;
         if (id != 0){
-            good = goodService.listGoodById(id).get(0);
+            good = goodService.listGoodById(id);
         }
 
         if (good != null){

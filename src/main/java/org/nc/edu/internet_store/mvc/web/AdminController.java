@@ -42,12 +42,26 @@ public class AdminController {
         return "/viewAdmin";
     }
 
-    @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addCategory", method = RequestMethod.POST)
     public String addCategory(@ModelAttribute("category") Category Category,
                               BindingResult result) {
 
         categoryService.addCategory(Category);
 
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/editCategory/{categoryId}", method = RequestMethod.GET)
+    public String showEditCategory(@PathVariable("categoryId") Integer id, Map<String,Object> map){
+        map.put("oldCategory",categoryService.findCategoryById(id));
+        map.put("newCategory", new Category());
+        return "/viewEditCategory";
+
+    }
+
+    @RequestMapping(value = "admin/editCat", method = RequestMethod.POST)
+    public String editCategory(@ModelAttribute("newCategory") Category category){
+        categoryService.updateCategory(category);
         return "redirect:/admin";
     }
 
@@ -68,6 +82,23 @@ public class AdminController {
         good.setCategory(Utils.getSavedCategory(request));
         goodService.addGood(good);
 
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/editGood/{goodId}")
+    public String editGood(@PathVariable("goodId") Integer id, Map<String,Object> map,HttpServletRequest request){
+        map.put("newGood", new Good());
+        Good good = goodService.listGoodById(id);
+        Utils.saveCategory(request,good.getCategory());
+        map.put("oldGood",good);
+        return "/viewEditGood";
+    }
+
+    @RequestMapping(value = "/admin/updateGood", method = RequestMethod.POST)
+    public String updateGood(@ModelAttribute("newGood") Good good,HttpServletRequest request){
+        good.setCategory(Utils.getSavedCategory(request));
+        good.setDescription(request.getParameter("newDesc"));
+        goodService.updateGood(good);
         return "redirect:/admin";
     }
 

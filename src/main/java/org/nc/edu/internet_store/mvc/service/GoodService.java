@@ -10,7 +10,9 @@ public interface GoodService {
 
     public List<Good> listGoodByCategory(Integer Id);
 
-    public List<Good> listGoodById(Integer Id);
+    public Good listGoodById(Integer Id);
+
+    public void updateGood(Good good);
 
     public void deleteGood(Integer id);
 }

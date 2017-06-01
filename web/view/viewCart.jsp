@@ -1,4 +1,3 @@
-<%@ page import="org.nc.edu.internet_store.mvc.domain.Cart" %>
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

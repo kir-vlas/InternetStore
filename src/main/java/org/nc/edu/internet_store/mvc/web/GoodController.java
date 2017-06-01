@@ -51,7 +51,7 @@ public class GoodController {
     public String listGoodHandler(HttpServletRequest request, @PathVariable("id") Integer id){
         Good good = null;
         if (id !=null)
-            good = goodService.listGoodById(id).get(0);
+            good = goodService.listGoodById(id);
         if (good != null){
             Cart cart = Utils.getCartInSession(request);
             cart.AddItem(good,1);

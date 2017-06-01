@@ -19,7 +19,7 @@ public class ClientController {
     RegistrationService registrationService;
 
 
-    @RequestMapping("/clientLogin")
+    @RequestMapping("/login")
     public String loginClient(Model model){
         return "/viewLogin";
     }

@@ -7,21 +7,26 @@
 
 <html>
 <head>
-    <title>Account details</title>
+    <title>Edit Category</title>
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="/resources/css/style.css" rel="stylesheet"/>
+    <link href="/resources/css/adminstyle.css" rel="stylesheet"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 </head>
 <body>
-    <div id="main">
-        <jsp:include page="shared/_header.jsp"/>
-        <jsp:include page="shared/_menu.jsp"/>
-        <div id="client-container">
-
+<div id="main">
+        <div id="update-category-form">
+            <form:form method="post" action="/admin/editCat" commandName="newCategory">
+                <div>
+                    New category name:
+                    <form:input path="category" value="${oldCategory.category}"/>
+                    <form:hidden path="id" value="${oldCategory.id}"/>
+                    <input type="submit" value="Ok"/>
+                </div>
+            </form:form>
         </div>
-        <jsp:include page="shared/_footer.jsp"/>
-    </div>
+</div>
 </body>
 </html>

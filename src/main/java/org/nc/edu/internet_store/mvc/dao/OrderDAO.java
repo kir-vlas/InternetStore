@@ -8,9 +8,9 @@ import org.nc.edu.internet_store.mvc.domain.OrderLine;
 import java.util.List;
 
 public interface OrderDAO {
-    public void saveOrder(Cart cart, Account account);
+    public void saveOrder(Cart cart);
 
-    public List<OrderLine> listOrderLine(Integer id);
+    public List<Order> listOrderByClient(Account account);
 
     public Order findOrder(Integer id);
 }
