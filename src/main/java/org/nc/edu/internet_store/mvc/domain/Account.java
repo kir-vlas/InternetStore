@@ -1,5 +1,7 @@
 package org.nc.edu.internet_store.mvc.domain;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -12,9 +14,11 @@ public class Account {
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_CLIENT = "CLIENT";
 
+    @NotNull
     @Column(name = "ACTIVE")
     private boolean active;
 
+    @NotNull
     @Column(name = "USERROLE")
     private String role;
 
@@ -45,6 +49,7 @@ public class Account {
         this.id = id;
     }
 
+
     @Column(name = "EMAIL")
     private String email;
     public String getEmail() {
@@ -63,6 +68,7 @@ public class Account {
         this.address = address;
     }
 
+    @NotNull
     @Column(name = "FIRSTNAME")
     private String firstName;
     public String getFirstName() {
@@ -70,8 +76,8 @@ public class Account {
     }
     public void setFirstName(String name){firstName = name;}
 
-
     @Column(name = "LOGIN")
+    @NotNull
     private String login;
     public String getLogin() {
         return login;
@@ -81,12 +87,20 @@ public class Account {
     }
 
     @Column(name = "PASSWORD")
+    @NotNull
     private String password;
     public String getPassword(){return password;}
     public void setPassword(String pass){password = pass;}
 
+    private String passwordConfirm;
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
-
+    @NotNull
     @Column(name = "LASTNAME")
     private String lastName;
     public String getLastName() {
@@ -94,6 +108,8 @@ public class Account {
     }
     public void setLastName(String name){lastName = name;}
 
+
+    @NotNull
     @Column(name = "PHONE")
     private String phone;
 
@@ -126,4 +142,12 @@ public class Account {
         this.hiringDate = hiringDate;
     }
 
+
+    private boolean isValid;
+    public boolean isValid() {
+        return isValid;
+    }
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
 }

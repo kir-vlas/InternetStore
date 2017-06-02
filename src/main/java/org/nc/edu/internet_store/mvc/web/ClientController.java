@@ -6,6 +6,7 @@ import org.nc.edu.internet_store.mvc.domain.OrderList;
 import org.nc.edu.internet_store.mvc.service.AccountService;
 import org.nc.edu.internet_store.mvc.service.OrderService;
 import org.nc.edu.internet_store.mvc.service.RegistrationService;
+import org.nc.edu.internet_store.mvc.validator.ClientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,10 +14,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,6 +35,20 @@ public class ClientController {
     @Autowired
     AccountService accountService;
 
+    @Autowired
+    ClientValidator clientValidator;
+
+    @InitBinder
+    public void myInitBinder(WebDataBinder dataBinder){
+        Object target = dataBinder.getTarget();
+        if (target == null) {
+            return;
+        }
+        if (target.getClass() == Account.class) {
+            dataBinder.setValidator(clientValidator);
+        }
+    }
+
     @RequestMapping("/login")
     public String loginClient(Model model){
         return "/viewLogin";
@@ -47,16 +62,21 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerClient(HttpServletRequest request, Map<String,Object> map){
+    public String registerClient(HttpServletRequest request, Model model){
         if (!request.isUserInRole("ROLE_CLIENT") ) {
-            map.put("account", new Account());
+            model.addAttribute("clientR", new Account());
             return "/viewRegistration";
         }
         return "redirect:/index";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerClient(@ModelAttribute("client") Account account){
+    public String registerClient(@ModelAttribute("clientR") @Validated Account account, BindingResult result){
+        if (result.hasErrors()){
+            account.setValid(false);
+            return "/viewRegistration";
+        }
+        account.setValid(true);
         account.setActive(true);
         account.setRole("CLIENT");
         registrationService.createAccount(account);

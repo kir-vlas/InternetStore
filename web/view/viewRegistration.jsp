@@ -19,34 +19,46 @@
         <jsp:include page="shared/_header.jsp"/>
         <jsp:include page="shared/_menu.jsp"/>
         <div id="registration-form-container">
-            <form:form method="post" action="/register" commandName="account">
+            <form:form method="post" action="/register" modelAttribute="clientR">
                 <div class="input-container">
-                    First Name: 
+                    First Name*:
                     <form:input cssClass="inputform" path="firstName"/>
+                    <form:errors cssStyle="color: red;" path="firstName" class="error-message" />
                 </div>
                 <div class="input-container">
-                    Last Name: 
+                    Last Name*:
                     <form:input cssClass="inputform" path="lastName"/>
+                    <form:errors cssStyle="color: red;" path="lastName" class="error-message" />
                 </div>
                 <div class="input-container">
-                    E-mail: 
+                    E-mail*:
                     <form:input cssClass="inputform" path="email"/>
+                    <form:errors cssStyle="color: red;" path="email" class="error-message" />
                 </div>
                 <div class="input-container">
-                    Adress:
-                    <form:input cssClass="inputform" path="adress"/>
+                    Address*:
+                    <form:input cssClass="inputform" path="address"/>
+                    <form:errors cssStyle="color: red;" path="address" class="error-message" />
                 </div>
                 <div class="input-container">
-                    Login:
+                    Login*:
                     <form:input cssClass="inputform" path="login"/>
+                    <form:errors cssStyle="color: red;" path="login" class="error-message" />
                 </div>
                 <div class="input-container">
-                    Password:
+                    Password*:
                     <form:input cssClass="inputform" type="password" path="password"/>
+                    <form:errors cssStyle="color: red;" path="password" class="error-message" />
                 </div>
                 <div class="input-container">
-                    Phone:
+                    Confirm Password*:
+                    <form:input cssStyle="color: red;" cssClass="inputform" type="password" path="passwordConfirm"/>
+
+                </div>
+                <div class="input-container">
+                    Phone*:
                     <form:input cssClass="inputform" path="phone"/>
+                    <form:errors cssStyle="color: red;" path="phone" class="error-message" />
                 </div>
                 <input type="submit" style="margin-left: 560px;" value="Register"/>
             </form:form>

@@ -21,7 +21,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" >
+        <property name="basename" value="validator"/>
+    </bean>
 
     <mvc:view-controller path="/index.html" view-name="/viewIndex" />
 
