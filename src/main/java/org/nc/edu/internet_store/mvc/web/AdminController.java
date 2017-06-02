@@ -6,9 +6,13 @@ import org.nc.edu.internet_store.mvc.domain.Good;
 import org.nc.edu.internet_store.mvc.service.GoodService;
 
 import org.nc.edu.internet_store.mvc.util.Utils;
+import org.nc.edu.internet_store.mvc.validator.CategoryValidator;
+import org.nc.edu.internet_store.mvc.validator.ProdValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -26,6 +30,25 @@ public class AdminController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    ProdValidator prodValidator;
+
+    @Autowired
+    CategoryValidator categoryValidator;
+
+    @InitBinder
+    public void myInitBinder(WebDataBinder dataBinder){
+        Object target = dataBinder.getTarget();
+        if (target == null) {
+            return;
+        }
+        if (target.getClass() == Good.class) {
+            dataBinder.setValidator(prodValidator);
+        }
+        if (target.getClass() == Category.class){
+            dataBinder.setValidator(categoryValidator);
+        }
+    }
 
     @RequestMapping(value = "/adminLogin", method = RequestMethod.GET)
     public String login(Model model){
@@ -35,7 +58,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin" ,method = RequestMethod.GET)
     public String listCategories(Map<String, Object> map){
-        map.put("Category", new Category());
+        map.put("category", new Category());
         map.put("CategoryList", categoryService.listCategory());
         map.put("Good", new Good());
         map.put("GoodList",goodService.listGood());
@@ -43,9 +66,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/addCategory", method = RequestMethod.POST)
-    public String addCategory(@ModelAttribute("category") Category Category,
+    public String addCategory(@ModelAttribute("category") @Validated Category Category,
                               BindingResult result) {
-
+        if (result.hasErrors()){
+            return "redirect:/admin?error=true";
+        }
         categoryService.addCategory(Category);
 
         return "redirect:/admin";
@@ -53,14 +78,17 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/editCategory/{categoryId}", method = RequestMethod.GET)
     public String showEditCategory(@PathVariable("categoryId") Integer id, Map<String,Object> map){
-        map.put("oldCategory",categoryService.findCategoryById(id));
+        map.put("oldCategory", categoryService.findCategoryById(id));
         map.put("newCategory", new Category());
         return "/viewEditCategory";
 
     }
 
     @RequestMapping(value = "admin/editCat", method = RequestMethod.POST)
-    public String editCategory(@ModelAttribute("newCategory") Category category){
+    public String editCategory(@ModelAttribute("newCategory") @Validated Category category,BindingResult result){
+        if (result.hasErrors()){
+            return "/viewEditCategory";
+        }
         categoryService.updateCategory(category);
         return "redirect:/admin";
     }
@@ -78,7 +106,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/addGood/add",method = RequestMethod.POST)
-    public String addGood(@ModelAttribute("good") Good good, BindingResult result, HttpServletRequest request){
+    public String addGood(@ModelAttribute("good") @Validated Good good, BindingResult result, HttpServletRequest request){
+        if (result.hasErrors()){
+            return "/viewAdminGoods";
+        }
         good.setCategory(Utils.getSavedCategory(request));
         goodService.addGood(good);
 
@@ -86,7 +117,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/editGood/{goodId}")
-    public String editGood(@PathVariable("goodId") Integer id, Map<String,Object> map,HttpServletRequest request){
+    public String editGood(@PathVariable("goodId") Integer id, Map<String,Object> map, HttpServletRequest request){
         map.put("newGood", new Good());
         Good good = goodService.listGoodById(id);
         Utils.saveCategory(request,good.getCategory());
@@ -95,7 +126,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/updateGood", method = RequestMethod.POST)
-    public String updateGood(@ModelAttribute("newGood") Good good,HttpServletRequest request){
+    public String updateGood(@ModelAttribute("newGood") @Validated Good good, HttpServletRequest request, BindingResult result){
+        if (result.hasErrors()){
+            return "/viewEditGoods";
+        }
         good.setCategory(Utils.getSavedCategory(request));
         good.setDescription(request.getParameter("newDesc"));
         goodService.updateGood(good);

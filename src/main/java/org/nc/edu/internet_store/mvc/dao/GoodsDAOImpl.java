@@ -16,7 +16,7 @@ public class GoodsDAOImpl implements GoodsDAO{
 
     public void addGood(Good good){
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         session.save(good);
         session.close();
     }
@@ -25,7 +25,7 @@ public class GoodsDAOImpl implements GoodsDAO{
     public List<Good> listGood(){
         String query = "select g from Good g inner join g.category";
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         List<Good> list = session.createQuery(query).list();
         session.close();
         return list;
@@ -35,7 +35,7 @@ public class GoodsDAOImpl implements GoodsDAO{
     public List<Good> listGoodByCategory(Integer id){
         String query = "select g from Good g inner join g.category where g.category = " + id.toString();
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         List<Good> list = session.createQuery(query).list();
         session.close();
         return list;
@@ -44,7 +44,7 @@ public class GoodsDAOImpl implements GoodsDAO{
     public void updateGood(Good good){
         String query = "select g from Good g where g.id = " + good.getId().toString();
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Good oldGood = (Good) session.createQuery(query).list().get(0);
         oldGood.setTitle(good.getTitle());
         oldGood.setPrice(good.getPrice());
@@ -56,7 +56,7 @@ public class GoodsDAOImpl implements GoodsDAO{
     public Good listGoodById(Integer id){
         String query = "select g from Good g inner join g.category where g.id = " + id.toString();
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         List<Good> list = session.createQuery(query).list();
         session.close();
         return list.get(0);
@@ -64,7 +64,7 @@ public class GoodsDAOImpl implements GoodsDAO{
 
     public void deleteGood(Integer id){
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Query query = session.createQuery("delete from Good where id = :id");
         query.setParameter("id",id);
         query.executeUpdate();

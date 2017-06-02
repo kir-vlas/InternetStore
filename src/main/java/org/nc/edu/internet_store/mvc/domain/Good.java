@@ -63,4 +63,12 @@ public class Good {
         this.description = description;
     }
 
+    @Transient
+    private boolean isValid;
+    public boolean isValid() {
+        return isValid;
+    }
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
 }

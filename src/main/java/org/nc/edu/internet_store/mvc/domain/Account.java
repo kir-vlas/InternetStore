@@ -92,6 +92,7 @@ public class Account {
     public String getPassword(){return password;}
     public void setPassword(String pass){password = pass;}
 
+    @Transient
     private String passwordConfirm;
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -142,7 +143,7 @@ public class Account {
         this.hiringDate = hiringDate;
     }
 
-
+    @Transient
     private boolean isValid;
     public boolean isValid() {
         return isValid;

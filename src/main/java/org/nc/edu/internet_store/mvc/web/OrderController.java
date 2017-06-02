@@ -1,10 +1,9 @@
 package org.nc.edu.internet_store.mvc.web;
 
-import org.nc.edu.internet_store.mvc.domain.Account;
 import org.nc.edu.internet_store.mvc.domain.Cart;
 import org.nc.edu.internet_store.mvc.service.AccountService;
 import org.nc.edu.internet_store.mvc.service.OrderService;
-import org.nc.edu.internet_store.mvc.util.OrderConfirmationException;
+import org.nc.edu.internet_store.mvc.exception.OrderConfirmationException;
 import org.nc.edu.internet_store.mvc.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -42,6 +41,7 @@ public class OrderController {
             throw new OrderConfirmationException(e);
         }
         map.put("orderId", cart.getOrderId());
+        Utils.removeCartInSession(request);
         return "/viewAfterOrder";
     }
 }

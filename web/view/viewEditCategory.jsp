@@ -22,6 +22,7 @@
                 <div>
                     New category name:
                     <form:input path="category" value="${oldCategory.category}"/>
+                    <form:errors cssStyle="color: red;" path="category" class="error-message" />
                     <form:hidden path="id" value="${oldCategory.id}"/>
                     <input type="submit" value="Ok"/>
                 </div>

@@ -18,7 +18,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     public Account findAccount(String login){
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Criteria crit = session.createCriteria(Account.class);
         crit.add(Restrictions.eq("login", login));
         Account acc = (Account) crit.uniqueResult();
@@ -28,7 +28,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     public void createAccount(Account account){
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         session.save(account);
         session.close();
     }

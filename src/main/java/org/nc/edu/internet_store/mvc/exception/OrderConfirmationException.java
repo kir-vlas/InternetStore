@@ -1,4 +1,4 @@
-package org.nc.edu.internet_store.mvc.util;
+package org.nc.edu.internet_store.mvc.exception;
 
 
 

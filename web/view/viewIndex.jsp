@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="main">
-<jsp:include page="shared/_header.jsp"/>
+    <jsp:include page="shared/_header.jsp"/>
     <jsp:include page="shared/_menu.jsp"/>
 
 <div id="left">
@@ -39,9 +39,11 @@
 
             <c:forEach items="${GoodList}" var="good">
                 <div class="goodsm">
-                    ${good.title}
-                    ${good.price}
-                    <a href="/addToCart/${good.id}">Add to cart</a>
+                    <a href="${pageContext.request.contextPath}/good?id=${good.id}">${good.title}</a>
+                    <div class="goods-ut">
+                        ${good.price} $
+                        <a href="/addToCart/${good.id}">Add to cart</a>
+                    </div>
                 </div>
             </c:forEach>
 

@@ -21,7 +21,7 @@ public class OrderDAOImpl implements OrderDAO{
 
     public void saveOrder(Cart cart) {
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Order order = new Order();
         order.setDate(new Date());
         order.setClient(cart.getClient());
@@ -43,7 +43,7 @@ public class OrderDAOImpl implements OrderDAO{
     @SuppressWarnings("unchecked")
     public List<OrderList> listOrderByClient(Account account) {
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         List<OrderList> orderList = new ArrayList<>();
         String query = "select o from Order o where o.client.id = "+account.getId();
         List<Order> orders = session.createQuery(query).list();
@@ -60,6 +60,7 @@ public class OrderDAOImpl implements OrderDAO{
 
     public Order findOrder(Integer id) {
         Session session = sessionFactory.getCurrentSession();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Criteria crit = session.createCriteria(Order.class);
         crit.add(Restrictions.eq("id", id));
         return (Order) crit.uniqueResult();

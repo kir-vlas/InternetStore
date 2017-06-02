@@ -33,6 +33,13 @@ public class GoodController {
         return "/viewIndex";
     }
 
+    @RequestMapping(value = "/good", method = RequestMethod.GET)
+    public String showGood(@RequestParam(value = "id", defaultValue = "0") String idStr,Map<String,Object> map){
+        Integer id = Integer.parseInt(idStr);
+        map.put("good", goodService.listGoodById(id));
+        return "/viewGood";
+    }
+
     @RequestMapping(value = "goods/{categoryId}",method = RequestMethod.GET)
     public String listGoodsAtCategory(@PathVariable("categoryId") Integer categoryId, Map<String, Object> map){
         map.put("Category", new Category());

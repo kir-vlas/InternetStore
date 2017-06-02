@@ -18,13 +18,14 @@
 <body>
 <div id="main">
     <h2>Categories</h2>
-<form:form method="post" action="admin/addCategory" commandName="Category">
+<form:form method="post" action="/admin/addCategory" commandName="category">
 
     <div id="category-add-container">
             Add category:
-           <form:input path="category" />
-
-
+            <form:input path="category" />
+            <c:if test="${param.error == 'true'}">
+                <span style="color:red;">Category must not be empty.</span>
+            </c:if>
        <input type="submit" value="Add category"/>
     </div>
 </form:form>

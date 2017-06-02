@@ -1,3 +1,4 @@
+<%@ page import="org.nc.edu.internet_store.mvc.util.Utils" %>
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -10,31 +11,40 @@
     <title>Add product</title>
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
+    <link href="/resources/css/style.css" rel="stylesheet"/>
+    <link href="/resources/css/adminstyle.css" rel="stylesheet"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 </head>
 <body>
-    <h3>Add good</h3>
-
+<div id="main">
+    <%
+        String categoryS = Utils.getSavedCategory(request).getCategory();
+        request.getSession().setAttribute("categoryS", categoryS);
+    %>
+    <h3>Add good in category: ${categoryS}</h3>
+    <div id="update-good-form">
     <form:form method="post" action="/admin/addGood/add" commandName="good">
 
-        <div>
+        <div class="edit-good-input">
             <span>Input product's name</span>
-            <form:input path="title"/>
+            <form:input cssClass="input-good" path="title"/>
+            <form:errors cssStyle="color: red;" path="title" class="error-message" />
         </div>
-        <div>
+        <div class="edit-good-input">
             <span>Input product's price</span>
-            <form:input path="price"/>
+            <form:input cssClass="input-good" path="price"/>
+            <form:errors cssStyle="color: red;" path="price" class="error-message" />
         </div>
-        <div>
+        <div class="edit-good-input">
             <span>Input product's description</span>
-            <form:input path="description"/>
+            <form:textarea cssClass="input-description" path="description" rows="12" cols="70"></form:textarea>
+            <form:errors cssStyle="color: red;" path="description" class="error-message" />
         </div>
-        <div>
-            <span>Product's category ${category.category}</span>
-            </div>
         <input type="submit" value="Add Product"/>
         <a href="/admin">Return</a>
     </form:form>
+    </div>
+</div>
 </body>
 </html>

@@ -18,7 +18,7 @@
     <div id="main">
         <h2>Thank you for registration!</h2>
         <br/>
-        <a href="/clientLogin">Login</a>
+        <a href="${pageContext.request.contextPath}/login">Login</a>
     </div>
 </body>
 </html>

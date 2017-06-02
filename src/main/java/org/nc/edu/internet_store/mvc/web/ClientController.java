@@ -73,10 +73,8 @@ public class ClientController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerClient(@ModelAttribute("clientR") @Validated Account account, BindingResult result){
         if (result.hasErrors()){
-            account.setValid(false);
             return "/viewRegistration";
         }
-        account.setValid(true);
         account.setActive(true);
         account.setRole("CLIENT");
         registrationService.createAccount(account);
@@ -97,6 +95,12 @@ public class ClientController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public String clientOrders(@RequestParam(value = "client", defaultValue = "") String login, Map<String,Object> map){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = null;
+        userDetails = (UserDetails) auth.getPrincipal();
+        if (!userDetails.getUsername().equals(login)){
+            return "/error403";
+        }
         List<OrderList> orderList = orderService.listClientOrders(login);
         map.put("orderList",orderList);
         return "/viewClientOrders";

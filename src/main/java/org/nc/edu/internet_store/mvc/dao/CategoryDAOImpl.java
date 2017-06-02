@@ -18,7 +18,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 
     public void addCategory(Category category){
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         session.save(category);
         session.close();
     }
@@ -27,7 +27,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     public List<Category> listCategory() {
         String query = "    from Category ";
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         List<Category> list = session.createQuery(query).list();
         session.close();
         return list;
@@ -36,7 +36,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     public Category findCategoryById(Integer id){
         String query = "select c from Category c where c.id = " + id.toString();
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Category category = (Category) session.createQuery(query).list().get(0);
         return category;
     }
@@ -44,7 +44,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     public void updateCategory(Integer id, String cat){
         String query = "select c from Category c where c.id = " + id.toString();
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         Category category = (Category) session.createQuery(query).list().get(0);
         category.setCategory(cat);
         session.flush();
@@ -53,7 +53,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 
     public void removeCategory(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+        if (!session.getTransaction().isActive())session.beginTransaction();
         //Category category = session.load(Category.class, id);
         Query query = session.createQuery("delete from Category where id = :id");
         query.setParameter("id",id);

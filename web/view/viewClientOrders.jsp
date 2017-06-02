@@ -25,14 +25,20 @@
             <c:if test="${!empty orderList}">
                 <c:forEach items="${orderList}" var="order">
                     <div class="order">
-                        ${order.order.id}
+                        Order number:  ${order.order.id}
+                        <br/>
+                        Order date:
                         <fmt:formatDate value="${order.order.date}" pattern="yyyy-MM-dd"/>
-                        ${order.order.totalPrice}
+                        <br/>
+                        Total price:
+                        ${order.order.totalPrice} $
                         <c:forEach items="${order.orderLines}" var="orderLine">
                             <div class="order-line">
                                 ${orderLine.good.title}
-                                ${orderLine.quantity}
-                                ${orderLine.good.price}
+                                <br/>
+                                Quantity: ${orderLine.quantity}
+                                <br/>
+                                ${orderLine.good.price} $
                             </div>
                         </c:forEach>
                     </div>
