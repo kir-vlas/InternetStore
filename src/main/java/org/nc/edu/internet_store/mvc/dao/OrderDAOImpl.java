@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.nc.edu.internet_store.mvc.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class OrderDAOImpl implements OrderDAO{
         Order order = new Order();
         order.setDate(new Date());
         order.setClient(cart.getClient());
-        order.setStatus(1);
+        order.setStatus(0);
         order.setTotalPrice(cart.getAmountTotal());
         List<CartLine> lines = cart.getGoodsList();
         session.persist(order);
@@ -40,7 +41,7 @@ public class OrderDAOImpl implements OrderDAO{
         session.close();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(value = {"unchecked", "Duplicates"})
     public List<OrderList> listOrderByClient(Account account) {
         Session session = sessionFactory.getCurrentSession();
         if (!session.getTransaction().isActive())session.beginTransaction();
@@ -56,6 +57,38 @@ public class OrderDAOImpl implements OrderDAO{
             orderList.add(orderListl);
         }
         return orderList;
+    }
+
+    @SuppressWarnings(value = {"unchecked", "Duplicates"})
+    public List<OrderList> listOrders(){
+        Session session = sessionFactory.getCurrentSession();
+        if (!session.getTransaction().isActive())session.beginTransaction();
+        List<OrderList> orderList = new ArrayList<>();
+        String query = "select o from Order o";
+        List<Order> orders = session.createQuery(query).list();
+        for (Order order: orders){
+            OrderList orderListl = new OrderList();
+            orderListl.setOrder(order);
+            orderList.add(orderListl);
+        }
+        return orderList;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<OrderLine> listOrderLines(Integer id){
+        Session session = sessionFactory.getCurrentSession();
+        if (!session.getTransaction().isActive())session.beginTransaction();
+        String query = "select ol from OrderLine ol where ol.order.id = " + id.toString();
+        return session.createQuery(query).list();
+    }
+
+    public void changeStatus(Integer id, Integer statusCode){
+        Session session = sessionFactory.getCurrentSession();
+        if (!session.getTransaction().isActive())session.beginTransaction();
+        String query = "select o from Order o where o.id = " + id.toString();
+        Order order = (Order) session.createQuery(query).list().get(0);
+        order.setStatus(statusCode);
+        session.flush();
     }
 
     public Order findOrder(Integer id) {

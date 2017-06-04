@@ -10,8 +10,17 @@ import javax.persistence.*;
 @Table(name = "orders")
 public class Order {
 
-    private enum Status{RECEIVED, BUILDING, DISATCHED, DELIVERED}
+    public static enum Status{RECEIVED, BUILDING, DISATCHED, DELIVERED}
 
+    private static final String[] statusList = {"Received","Building", "Dispatched", "Delivered"};
+
+    public static String[] getStatusesList(){
+        return statusList;
+    }
+
+    public String[] getStatusList(){
+        return statusList;
+    }
 
     @Id
     @Column(name = "ID")

@@ -58,6 +58,8 @@ public class ClientController {
     public String afterLogin(HttpServletRequest request){
         if (request.isUserInRole("ROLE_ADMIN"))
             return "redirect:/admin";
+        if (request.isUserInRole("ROLE_EMPLOYEE"))
+            return "redirect:/employee";
         return "redirect:index";
     }
 

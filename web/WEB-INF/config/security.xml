@@ -12,6 +12,7 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
         <intercept-url pattern="/orders/**" access="hasRole('ROLE_CLIENT')" />
         <intercept-url pattern="/order/**" access="hasRole('ROLE_CLIENT')" />
         <intercept-url pattern="/clientInfo/**" access="hasRole('ROLE_CLIENT')" />
+        <intercept-url pattern="/employee/**" access="hasRole('ROLE_EMPLOYEE')" />
         <logout logout-url="/logout" logout-success-url="/index" />
 
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />

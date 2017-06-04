@@ -1,5 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Locale" %>
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>

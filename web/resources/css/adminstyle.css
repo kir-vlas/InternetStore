@@ -48,5 +48,13 @@
 
 .input-description{
     margin-left: 300px;
+}
 
+#order-table{
+    width:1200px;
+}
+
+#order-table td{
+    height: 30px;
+    padding: 2px;
 }

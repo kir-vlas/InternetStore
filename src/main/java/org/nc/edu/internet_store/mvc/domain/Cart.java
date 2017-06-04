@@ -3,7 +3,7 @@ package org.nc.edu.internet_store.mvc.domain;
 import java.util.List;
 import java.util.ArrayList;
 
-public class    Cart {
+public class Cart {
     private int orderId;
 
     private Account client;

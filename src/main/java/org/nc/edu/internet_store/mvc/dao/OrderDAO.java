@@ -9,5 +9,11 @@ public interface OrderDAO {
 
     public List<OrderList> listOrderByClient(Account account);
 
+    public List<OrderList> listOrders();
+
+    public List<OrderLine> listOrderLines(Integer id);
+
+    public void changeStatus(Integer id, Integer statusCode);
+
     public Order findOrder(Integer id);
 }
