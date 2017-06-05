@@ -1,7 +1,9 @@
 package org.nc.edu.internet_store.mvc.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.nc.edu.internet_store.mvc.dao.AccountDAO;
 import org.nc.edu.internet_store.mvc.domain.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -11,6 +13,9 @@ import org.springframework.validation.Validator;
 public class ClientValidator implements Validator {
 
     private EmailValidator emailValidator = EmailValidator.getInstance();
+
+    @Autowired
+    private AccountDAO accountDAO;
 
     @Override
     public boolean supports(Class<?> clazz){
@@ -29,6 +34,12 @@ public class ClientValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password","NotEmpty.clientR.password","Password is required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"passwordConfirm","NotEmpty.clientR.passwordConfirm","Wrong password");
 
+        Account acc = accountDAO.findAccount(account.getLogin());
+
+        if (acc != null)
+            if (acc.getLogin().equals(account.getLogin())){
+                errors.rejectValue("login", "","This login is already taken");
+            }
 
         if (!account.getPassword().equals(account.getPasswordConfirm())){
             errors.rejectValue("password", "notMatch.clientR.passwordC","Passwords is not match");

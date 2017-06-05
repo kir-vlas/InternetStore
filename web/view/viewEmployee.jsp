@@ -38,6 +38,9 @@
                 </c:forEach>
             </c:if>
         </table>
+        <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+            <input type="submit" value="Logout" />
+        </form:form>
     </div>
 </body>
 </html>

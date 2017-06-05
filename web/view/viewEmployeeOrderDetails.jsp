@@ -37,12 +37,16 @@
         <div id="status-change">
             <form:form modelAttribute="selectedStatus" action="/employee/order/changestatus" method="post">
                 <form:select path="status">
+                    <option selected disabled>Choose status</option>
                     <c:forEach items="${statuses}" var="status">
                         <option value="${status}">${status}</option>
                     </c:forEach>
                 </form:select>
                 <form:hidden path="orderId" value="${OrderLines.get(0).order.id}"/>
                 <input type="submit" value="Change status"/>
+            </form:form>
+            <form:form action="/employee">
+                <button>Return</button>
             </form:form>
         </div>
     </div>

@@ -31,9 +31,8 @@
                    varStatus="vstatus">
             <div class="good-preview-container">
                 <ul>
-                    <li><form:input
+                    <form:input
                             path="goodsList[${vstatus.index}].good.id" hidden="true" name="id" value="${line.good.id}"/>
-                    </li>
                     <li>Name: ${line.good.title}</li>
                     <li>Price: <span id="price">
 
