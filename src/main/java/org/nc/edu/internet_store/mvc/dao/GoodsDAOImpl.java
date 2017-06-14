@@ -17,6 +17,12 @@ public class GoodsDAOImpl implements GoodsDAO{
     public void addGood(Good good){
         Session session = sessionFactory.getCurrentSession();
         if (!session.getTransaction().isActive())session.beginTransaction();
+        if (good.getImgFile() != null){
+            byte[] image = good.getImgFile().getBytes();
+            if (image != null){
+                good.setImage(image);
+            }
+        }
         session.save(good);
         session.close();
     }

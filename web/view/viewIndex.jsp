@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Goods</title>
+    <script src="/resources/js/jquery.js" type="text/javascript" ></script>
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet"/>
@@ -42,7 +43,7 @@
                     <a href="${pageContext.request.contextPath}/good?id=${good.id}">${good.title}</a>
                     <div class="goods-ut">
                         ${good.price} $
-                        <a href="/addToCart/${good.id}">Add to cart</a>
+                        <button onclick="$.ajax('/addToCart?good=${good.id}',show())">Add to cart</button>
                     </div>
                 </div>
             </c:forEach>
@@ -52,5 +53,16 @@
 </div>
 <jsp:include page="shared/_footer.jsp"/>
 </div>
+<div id="after-add-in-cart">
+    Item Added in cart
+</div>
+<script type="text/javascript">
+    function show() {
+        $("#after-add-in-cart").show();
+        setTimeout(function () {
+            $("#after-add-in-cart").hide()
+        },5000);
+    }
+</script>
 </body>
 </html>

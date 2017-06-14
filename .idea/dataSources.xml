@@ -39,7 +39,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/web/WEB-INF/config/data.xml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.1.107:3306/internetstore?useSSL=false</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.1.122:3306/internetstore?useSSL=false</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

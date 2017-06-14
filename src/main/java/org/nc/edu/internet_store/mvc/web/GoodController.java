@@ -1,5 +1,6 @@
 package org.nc.edu.internet_store.mvc.web;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.nc.edu.internet_store.mvc.domain.Cart;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class GoodController {
@@ -34,7 +36,7 @@ public class GoodController {
     }
 
     @RequestMapping(value = "/good", method = RequestMethod.GET)
-    public String showGood(@RequestParam(value = "id", defaultValue = "0") String idStr,Map<String,Object> map){
+    public String showGood(@RequestParam(value = "id", defaultValue = "0") String idStr, Map<String,Object> map){
         Integer id = Integer.parseInt(idStr);
         map.put("good", goodService.listGoodById(id));
         return "/viewGood";
@@ -54,8 +56,9 @@ public class GoodController {
         return "redirect:/index";
     }
 
-    @RequestMapping("/addToCart/{id}")
-    public String listGoodHandler(HttpServletRequest request, @PathVariable("id") Integer id){
+    @RequestMapping(value = "/addToCart")
+    @ResponseBody
+    public void listGoodHandler(HttpServletRequest request, @RequestParam(value = "good") Integer id){
         Good good = null;
         if (id !=null)
             good = goodService.listGoodById(id);
@@ -63,8 +66,16 @@ public class GoodController {
             Cart cart = Utils.getCartInSession(request);
             cart.AddItem(good,1);
         }
-        return "redirect:/cart";
     }
 
-
+    @RequestMapping("/image")
+    public void showImage(HttpServletRequest request, HttpServletResponse response,
+                          @RequestParam(value = "id", defaultValue = "0") Integer id) throws IOException{
+        Good good = goodService.listGoodById(id);
+        if (good.getImage() != null){
+            response.setContentType("image/jpeg, image/jpg, image/png");
+            response.getOutputStream().write(good.getImage());
+        }
+        response.getOutputStream().close();
+    }
 }

@@ -7,7 +7,8 @@
 
 <html>
 <head>
-    <title></title>
+    <title>${good.title}</title>
+    <script src="/resources/js/jquery.js" type="text/javascript" ></script>
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet"/>
@@ -19,13 +20,25 @@
         <jsp:include page="shared/_header.jsp"/>
         <jsp:include page="shared/_menu.jsp"/>
         <div id="good-page">
+            <img class="prod-image" src="${pageContext.request.contextPath}/image?id=${good.id}"/>
             <span id="good-name">${good.title}</span>
             <span id="good-category">${good.category.category}</span>
             <div id="good-description">${good.description}</div>
             <span id="good-price">${good.price} $</span>
-            <a href="${pageContext.request.contextPath}/addToCart/${good.id}">Add to cart</a>
+            <button onclick="$.ajax('${pageContext.request.contextPath}/addToCart?good=${good.id}',show())">Add to cart</button>
         </div>
         <jsp:include page="shared/_footer.jsp"/>
     </div>
+    <div id="after-add-in-cart">
+        Item Added in cart
+    </div>
+    <script type="text/javascript">
+        function show() {
+            $("#after-add-in-cart").show();
+            setTimeout(function () {
+                $("#after-add-in-cart").hide()
+            },5000);
+        }
+    </script>
 </body>
 </html>

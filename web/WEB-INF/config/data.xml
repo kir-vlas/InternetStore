@@ -11,7 +11,7 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="com.mysql.cj.jdbc.Driver"
-          p:url="jdbc:mysql://192.168.1.107:3306/internetstore?useSSL=false"
+          p:url="jdbc:mysql://192.168.1.122:3306/internetstore?useSSL=false"
           p:username="admin"
           p:password="admin" />
 

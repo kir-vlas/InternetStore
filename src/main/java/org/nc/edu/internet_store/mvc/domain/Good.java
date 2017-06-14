@@ -1,6 +1,8 @@
 package org.nc.edu.internet_store.mvc.domain;
 
 import com.sun.istack.internal.NotNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
 
@@ -70,5 +72,24 @@ public class Good {
     }
     public void setValid(boolean valid) {
         isValid = valid;
+    }
+
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
+    public byte[] getImage() {
+        return image;
+    }
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    @Transient
+    private CommonsMultipartFile imgFile;
+    public CommonsMultipartFile getImgFile() {
+        return imgFile;
+    }
+    public void setImgFile(CommonsMultipartFile imgFile) {
+        this.imgFile = imgFile;
     }
 }

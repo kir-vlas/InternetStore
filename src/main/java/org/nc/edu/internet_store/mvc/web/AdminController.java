@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,7 @@ public class AdminController {
         }
         if (target.getClass() == Good.class) {
             dataBinder.setValidator(prodValidator);
+            dataBinder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
         }
         if (target.getClass() == Category.class){
             dataBinder.setValidator(categoryValidator);
@@ -106,6 +108,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/addGood/add",method = RequestMethod.POST)
+    @CrossOrigin
     public String addGood(@ModelAttribute("good") @Validated Good good, BindingResult result, HttpServletRequest request){
         if (result.hasErrors()){
             return "/viewAdminGoods";
