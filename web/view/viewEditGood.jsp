@@ -19,7 +19,7 @@
     <div id="main">
         <h3>Edit ${oldGood.title}</h3>
         <div id="update-good-form">
-            <form:form method="post" action="/admin/updateGood" commandName="newGood">
+            <form:form method="post" action="/admin/updateGood" commandName="newGood" enctype="multipart/form-data">
                 <form:hidden path="id" value="${oldGood.id}"/>
                 <div class="edit-good-input">
                     Name:
@@ -30,6 +30,10 @@
                     Price:
                     <form:input cssClass="input-good" path="price" value="${oldGood.price}"/>
                     <form:errors cssStyle="color: red;" path="price" class="error-message" />
+                </div>
+                <div class="edit-good-input">
+                    Image:
+                    <form:form type="file" path="imgFile"/>
                 </div>
                 <div class="edit-good-input">
                     Description:
