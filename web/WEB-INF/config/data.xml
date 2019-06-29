@@ -11,9 +11,9 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="com.mysql.cj.jdbc.Driver"
-          p:url="jdbc:mysql://192.168.1.122:3306/internetstore?useSSL=false"
-          p:username="admin"
-          p:password="admin" />
+          p:url="jdbc:mysql://192.168.1.52:3306/internetstore?useSSL=false"
+          p:username="store"
+          p:password="111111" />
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
