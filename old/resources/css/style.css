@@ -1,0 +1,186 @@
+#header{
+    height: 175px;
+    margin: 0 auto;
+}
+
+#main{
+    width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#left{
+    padding-left: 3px;
+    width: 200px;
+    float: left;
+    height: 100%;
+}
+
+#right{
+    width: 980px;
+    height: 100%;
+    float: right;
+}
+
+#footer{
+    margin-top: 10px;
+    text-align: center;
+    height: 40px;
+}
+
+#hor_menu{
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#hor_left{
+    width: 700px;
+    float:left;
+    border-right:1px solid black;
+}
+
+#hor_right{
+    width:495px;
+    float:right;
+}
+
+ul.hmenu{
+    margin:0px;
+    padding:10px;
+}
+
+ul.hmenu li{
+    border-right:1px solid #996633;
+    padding:3px;
+    display: inline;
+    text-decoration:none;
+}
+
+li a{
+    text-decoration:none;
+    color:black;
+}
+
+#goods{
+    width: 500px;
+}
+
+.goodsm{
+    width: 550px;
+    height: 130px;
+    border: 1px solid black;
+    padding-top: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#left a{
+    text-decoration:none;
+    font-size:12pt;
+    color: black;
+    display:block;
+}
+
+.clear{
+    clear: both;
+}
+
+.good-preview-container{
+    margin: 0 auto;
+    width: 450px;
+    height: 200px;
+}
+
+#price{
+    color: #204d74;
+}
+
+#login-container{
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.input-container{
+    margin:0 auto;
+    width: 500px;
+    height: 40px;
+}
+
+.inputform{
+    float: right;
+}
+
+#order-container{
+    margin: 0 auto;
+    width: 300px;
+    height: 100px;
+}
+
+#client-container{
+    margin: 0 auto;
+    width: 700px;
+    height: 400px;
+}
+
+.order{
+    padding-left: 5px;
+}
+
+.order-line{
+    padding:10px;
+}
+
+.goods-ut{
+    float:right;
+}
+
+#good-page{
+    padding-top: 40px;
+    padding-left: 200px;
+}
+
+#good-name{
+    display: block;
+    font-size: 18pt;
+}
+
+#good-category{
+    display: block;
+    font-size: 12pt;
+}
+
+#good-description{
+    font-size: 11pt;
+    width: 400px;
+    height:300px;
+    margin-left: 400px;
+}
+
+#order-button{
+    margin-left: 10px;
+}
+
+#good-price{
+    display: block;
+    font-size: 15pt;
+}
+
+#after-add-in-cart{
+    position: fixed;
+    width: 150px;
+    height: 50px;
+    bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    right: 10px;
+    display: none;
+    z-index: 1;
+    border: 1px solid black;
+}
+
+.prod-image{
+    float:left;
+    width: 250px;
+    height: 250px;
+}
